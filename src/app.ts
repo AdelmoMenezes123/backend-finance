@@ -1,6 +1,7 @@
-import express, { application } from "express";
+import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+// import * as bodyParser from 'body-parser';
 
 import routes from "./routes";
 
@@ -10,6 +11,8 @@ class App {
   public constructor() {
     this.express = express();
 
+    // this.express.use(bodyParser.json());
+    // this.express.use(bodyParser.urlencoded({ extended: false}));
     this.middlewares();
     this.database();
     this.routes();
