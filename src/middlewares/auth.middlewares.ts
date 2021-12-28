@@ -1,13 +1,12 @@
 // import { Schema } from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from "express";
-import usuarioModel,{UserInterface} from '../schemas/User';
+import usuarioModel, { UserInterface } from '../schemas/User';
 // import Usuario from '../controller/usuario/usuario.interface';
 
 
 class AuthMiddlewares {
   public async autorizarUsuarioByToken(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-
     const authHeader = req.headers.authorization;
     if (!authHeader) {
       return res.status(401).send({ error: 'token nao autorizado' })
@@ -15,7 +14,7 @@ class AuthMiddlewares {
 
     const parts = authHeader.split(' ');
 
-    if (!parts.length === 2) {
+    if (parts.length !== 2) { // Erro na formatação do token
       return res.status(401).send({ error: 'token error' })
     }
 
@@ -26,9 +25,15 @@ class AuthMiddlewares {
     }
 
     jwt.verify(token, "SECRET", (err, decoded) => {
+      console.log("4", token)
+      console.log("5", decoded)
+      console.log("6", err)
+
+      
+ 
       if (err) return res.status(401).send({ error: 'Error token invalido' })
 
-      req.user = decoded._id;
+      req.userId = decoded._id;
       return next();
     })
   }

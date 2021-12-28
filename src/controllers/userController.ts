@@ -5,6 +5,11 @@ import bcrypt from 'bcrypt';
 import usuario, { UserInterface } from "../schemas/User";
 
 class UserController {
+  public async v(req: Request, res: Response): Promise<Response> {
+    const user = await usuario.find()
+    return res.json(user)
+  }
+
   public async cadastrar(req: Request, res: Response): Promise<Response> {
     const user: UserInterface = req.body;
     
