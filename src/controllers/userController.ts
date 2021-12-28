@@ -6,7 +6,8 @@ import usuario, { UserInterface } from "../schemas/User";
 
 class UserController {
   public async v(req: Request, res: Response): Promise<Response> {
-    const user = await usuario.find()
+    const user = await usuario.find();
+
     return res.json(user)
   }
 
@@ -15,22 +16,17 @@ class UserController {
     
     const userModel = new usuario(user);
     
-    let resposta = {};
+    let resposta = {message: 'Usuario cadastrado com sucesso!'};
     let status = 200;
 
     const success = await userModel.save()
 
-    if (success) {
-      resposta = {
-        message: 'Usuario cadastrado com sucesso!',
-      };
-      status = 200;
-    } else {
+    if (!success) {
       resposta = {
         message: 'Usuario nao cadastrado!',
       };
-      status = 400
-    }
+      status = 400;
+    } 
 
     return res.status(status).json({ resposta });
 

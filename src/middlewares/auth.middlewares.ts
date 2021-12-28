@@ -25,15 +25,12 @@ class AuthMiddlewares {
     }
 
     jwt.verify(token, "SECRET", (err, decoded) => {
-      console.log("4", token)
-      console.log("5", decoded)
-      console.log("6", err)
-
-      
- 
+  
       if (err) return res.status(401).send({ error: 'Error token invalido' })
 
-      req.userId = decoded._id;
+      req.userLogadoId = decoded._id;
+      req.userLogadoNome = decoded.nome;
+
       return next();
     })
   }
