@@ -16,6 +16,7 @@ class App {
     this.middlewares();
     this.database();
     this.routes();
+    this.globals()
   }
 
    middlewares() {
@@ -35,6 +36,7 @@ class App {
     // const connec =
     //   "mongodb+srv://" + DATABASE_NAME + ":" + DATABASE_PASSWORD + "@" + DATABASE_HOST + "/" + DATABASE_USERNAME
 
+    console.log('banco ', DATABASE_HOST)
     const connec =
       "mongodb+srv://finance-portfolio:finance123@cluster0.8ad0t.mongodb.net/finance-portfolio";
     _mongoose2.default.connect(connec, { useNewUrlParser: true });
@@ -42,6 +44,17 @@ class App {
 
    routes() {
     this.express.use(_routes2.default);
+  }
+
+   globals() {
+
+    this.express.use((req, res, next) => {
+      res.locals.userLogadoId = req.session['userLogadoId'] || null;
+      res.locals.userLogadoNome = req.session['userLogadoNome'] || null;
+
+      console.log("user-> ", res.locals.user)
+      next();
+    })
   }
 }
 

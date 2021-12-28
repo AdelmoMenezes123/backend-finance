@@ -5,27 +5,28 @@ var _bcrypt = require('bcrypt'); var _bcrypt2 = _interopRequireDefault(_bcrypt);
 var _User = require('../schemas/User'); var _User2 = _interopRequireDefault(_User);
 
 class UserController {
+   async v(req, res) {
+    const user = await _User2.default.find();
+
+    return res.json(user)
+  }
+
    async cadastrar(req, res) {
     const user = req.body;
     
     const userModel = new (0, _User2.default)(user);
     
-    let resposta = {};
+    let resposta = {message: 'Usuario cadastrado com sucesso!'};
     let status = 200;
 
     const success = await userModel.save()
 
-    if (success) {
-      resposta = {
-        message: 'Usuario cadastrado com sucesso!',
-      };
-      status = 200;
-    } else {
+    if (!success) {
       resposta = {
         message: 'Usuario nao cadastrado!',
       };
-      status = 400
-    }
+      status = 400;
+    } 
 
     return res.status(status).json({ resposta });
 

@@ -7,7 +7,6 @@ var _jsonwebtoken = require('jsonwebtoken'); var _jsonwebtoken2 = _interopRequir
 
 class AuthMiddlewares {
    async autorizarUsuarioByToken(req, res, next) {
-
     const authHeader = req.headers.authorization;
     if (!authHeader) {
       return res.status(401).send({ error: 'token nao autorizado' })
@@ -15,7 +14,7 @@ class AuthMiddlewares {
 
     const parts = authHeader.split(' ');
 
-    if (!parts.length === 2) {
+    if (parts.length !== 2) { // Erro na formatação do token
       return res.status(401).send({ error: 'token error' })
     }
 
@@ -26,9 +25,12 @@ class AuthMiddlewares {
     }
 
     _jsonwebtoken2.default.verify(token, "SECRET", (err, decoded) => {
+  
       if (err) return res.status(401).send({ error: 'Error token invalido' })
 
-      req.user = decoded._id;
+      req.userLogadoId = decoded._id;
+      req.userLogadoNome = decoded.nome;
+
       return next();
     })
   }
