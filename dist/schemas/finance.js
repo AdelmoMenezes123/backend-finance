@@ -1,30 +1,17 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _mongoose = require('mongoose');
-
-
-
-
-
-
-
-
-
-
-
-const FinancaSchema = new (0, _mongoose.Schema)(
-  {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const FinancaSchema = new mongoose_1.Schema({
     produto: String,
     valor: Number,
     data: Date,
     quantidade: Number,
     status: Boolean,
     user: String
-  }
-);
-
-
+});
 FinancaSchema.methods.total = function () {
-  let valor = this.quantidade * this.valor
-  return String(valor);
+    let valor = this.quantidade * this.valor;
+    return String(valor);
 };
-
-exports. default = _mongoose.model("Financa", FinancaSchema);
+exports.default = (0, mongoose_1.model)("Financa", FinancaSchema);
+//# sourceMappingURL=finance.js.map

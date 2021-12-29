@@ -11,7 +11,7 @@ class FinanceController {
   }
 
   public async criar(req: Request, res: Response): Promise<Response> {
-    req.body.user = req.userLogadoId;
+    req.body.user = req.params.idUser
     const finance: FinancaInterface = req.body;
     const financaModel = new this.Financa(finance);
 

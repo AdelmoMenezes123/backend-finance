@@ -1,7 +1,6 @@
 // import { Schema } from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from "express";
-import usuarioModel, { UserInterface } from '../schemas/User';
 // import Usuario from '../controller/usuario/usuario.interface';
 
 
@@ -27,9 +26,6 @@ class AuthMiddlewares {
     jwt.verify(token, "SECRET", (err, decoded) => {
   
       if (err) return res.status(401).send({ error: 'Error token invalido' })
-
-      req.userLogadoId = decoded._id;
-      req.userLogadoNome = decoded.nome;
 
       return next();
     })

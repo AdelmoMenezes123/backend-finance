@@ -1,3 +1,6 @@
-"use strict"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _app = require('./app'); var _app2 = _interopRequireDefault(_app);
-const port = process.env.PORT || 3001 
-_app2.default.listen(port,()=>{console.log('🚀 🚀 Servidor Rodando na porta: ' + port)})
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = require("./app");
+const port = process.env.PORT || 3001;
+app_1.default.listen(port, () => { console.log('🚀 🚀 Servidor Rodando na porta: ' + port); });
+//# sourceMappingURL=server.js.map

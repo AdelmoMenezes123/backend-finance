@@ -9,12 +9,12 @@ import authMiddlewares from "./middlewares/auth.middlewares"
 
 const routes = Router();
 
-routes.post("/cadastrar/users", userController.cadastrar);
+routes.post("/cadastrar/user", userController.cadastrar);
 routes.post('/login', userController.autenticar);
 routes.get('/user', authMiddlewares.autorizarUsuarioByToken,userController.v);
 
 
-routes.post("/cadastar/financa", authMiddlewares.autorizarUsuarioByToken, financeController.criar);
+routes.post("/cadastar/financa/:idUser", authMiddlewares.autorizarUsuarioByToken, financeController.criar);
 routes.post("/financa/:id", authMiddlewares.autorizarUsuarioByToken, financeController.excluir);
 routes.get("financa",  authMiddlewares.autorizarUsuarioByToken, financeController.listagem);
 export default routes;

@@ -1,39 +1,25 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _mongoose = require('mongoose');
-var _bcrypt = require('bcrypt'); var _bcrypt2 = _interopRequireDefault(_bcrypt);
-
-
-
-
-
-
-
-
-
-
-const UserSchema = new (0, _mongoose.Schema)(
-  {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const bcrypt_1 = require("bcrypt");
+const UserSchema = new mongoose_1.Schema({
     nome: String,
     sobrenome: String,
     login: String,
     senha: String,
     foto: String,
-  },
-  {
+}, {
     timestamps: true,
-  }
-);
-
+});
 UserSchema.methods.fullName = function () {
-  return this.nome + " " + this.sobrenome;
+    return this.nome + " " + this.sobrenome;
 };
-
 UserSchema.pre('save', async function criptografaSenha() {
-  var salt = await _bcrypt2.default.genSalt(10);
-  this.senha = await _bcrypt2.default.hash(this.senha, salt);
+    var salt = await bcrypt_1.default.genSalt(10);
+    this.senha = await bcrypt_1.default.hash(this.senha, salt);
 });
-
 UserSchema.pre('save', async function gerarAvatar() {
-  this.foto = await `https://ui-avatars.com/api/?rounded=true&name=${this.nome}`;
+    this.foto = await `https://ui-avatars.com/api/?rounded=true&name=${this.nome}`;
 });
-
-exports. default = _mongoose.model("Usuario", UserSchema);
+exports.default = (0, mongoose_1.model)("Usuario", UserSchema);
+//# sourceMappingURL=User.js.map

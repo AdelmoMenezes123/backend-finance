@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "sourceMap": true,
+      "target": "es2017",
+      "module": "commonjs",
+      "allowJs": true,
+      "removeComments": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "baseUrl": ".",
+      "typeRoots": [
+          "./node_modules/@types",
+          "./src/@types"
+      ],
+      "resolveJsonModule": true,
+      "noImplicitAny": false,
+      "allowSyntheticDefaultImports": true, /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+      //"esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+      "skipLibCheck": true, /* Skip type checking of declaration files. */
+      "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+      "paths": {
+          "@controllers/*":["./src/controllers/*"],
+          "@schemas/*":["./src/schemas/*"],
+          "@middlewares/*":["./src/middlewares/*"],
+          "@utils/*":["./src/ultils/*"],
+
+      }
+  },
+  "include": [
+      "src/**/*.ts"
+  ],
+  "exclude": [
+      "node_modules"
+  ]
+}
