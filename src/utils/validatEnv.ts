@@ -1,4 +1,4 @@
-import envalid from "envalid";
+const envalid = require('envalid');
 
 function validateEnv() {
     envalid.cleanEnv(process.env, {

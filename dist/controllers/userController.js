@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const jsonwebtoken_1 = require("jsonwebtoken");
-const bcrypt_1 = require("bcrypt");
-const User_1 = require("../schemas/User");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const User_1 = __importDefault(require("../schemas/User"));
 class UserController {
     async v(req, res) {
         const user = await User_1.default.find();
