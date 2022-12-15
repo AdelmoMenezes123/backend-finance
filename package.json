@@ -35,7 +35,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/jsonwebtoken": "^8.5.0",
     "cors": "^2.8.5",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "mongoose": "^6.1.4",
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
